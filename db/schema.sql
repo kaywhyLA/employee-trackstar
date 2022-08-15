@@ -5,7 +5,7 @@ USE employeeTracker;
 
 CREATE TABLE departments (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL
+    dept_name VARCHAR(30),
     PRIMARY KEY (id)
 );
 
@@ -17,4 +17,12 @@ CREATE TABLE employee (
     role_id INTEGER(11),
     manager_id INTEGER(11),
     PRIMARY KEY (id)
+);
+
+--table for role 
+CREATE TABLE role (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY, 
+    employee_title VARCHAR (30),
+    employee_salary DECIMAL,
+    department_id INTEGER
 );
