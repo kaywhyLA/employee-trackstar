@@ -1,12 +1,10 @@
 --database for employeeTracker
-DROP DATABASE IF EXISTS employeeTracker;
 CREATE DATABASE employeeTracker;
 USE employeeTracker;
 
 CREATE TABLE departments (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    dept_name VARCHAR(30),
-    PRIMARY KEY (id)
+    dept_name VARCHAR(30)
 );
 
 -- table for employees
@@ -15,11 +13,10 @@ CREATE TABLE employee (
     first_name VARCHAR(30), 
     last_name VARCHAR(30),
     role_id INTEGER(11),
-    manager_id INTEGER(11),
-    PRIMARY KEY (id)
+    manager_id INTEGER(11)
 );
 
---table for role 
+-- table for role 
 CREATE TABLE role (
     id INTEGER AUTO_INCREMENT PRIMARY KEY, 
     employee_title VARCHAR (30),
