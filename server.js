@@ -142,7 +142,7 @@ const addEmployee = () => {
 const addDepartment = () => {
     inquirer.prompt([{
         type: 'input',
-        message: 'What department would you like to add?',
+        message: 'Which department would you like to add?',
         name: 'newDept'
     }]).then((answers) => {
         connection.query(`INSERT INTO employee_Dept SET?`, {
@@ -151,6 +151,30 @@ const addDepartment = () => {
             (err) => {
                 if (err) throw err;
                 console.log('Added new department')
+                console.table(answers)
+                employeeUpdate()
+            })
+    })
+};
+
+// add roles
+const addRoles = () => {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'Which role would you like to add?',
+        name: 'newRole'
+    }, {
+        type: 'input',
+        message: 'What is the salary?',
+        name: 'salary'
+    }]).then((answers) => {
+        connection.query(`INSERT INTO employee_Role SET?`, {
+                title: answers.newRole,
+                salary: answers.salary
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('Added new role')
                 console.table(answers)
                 employeeUpdate()
             })
