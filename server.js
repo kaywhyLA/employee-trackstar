@@ -180,3 +180,51 @@ const addRoles = () => {
             })
     })
 };
+
+employeesArray = [];
+const query = 'SELECT first_name FROM employee';
+connection.query(query, (err, res) => {
+    if (err) throw err;
+    res.forEach(({ first_name }) => {
+        employeesArray.push(first_name);
+    });
+});
+rolesArray = []
+const query2 = `SELECT title FROM employee_Role`
+connection.query(query2, (err, res) => {
+    if (err) throw err;
+    res.forEach(({ title }) => {
+        rolesArray.push(title);
+    });
+});
+
+// update employee role
+const updateEmployeeRole = () => {
+    inquirer.prompt([{
+            type: 'list',
+            message: 'Which employee would you like to update?',
+            choices: employeesArray,
+            name: 'roleUpdate'
+        },
+        {
+            type: 'list',
+            message: 'What would you like for the new role?',
+            choices: rolesArray,
+            name: 'newRole'
+        }
+    ]).then((answers) => {
+        connection.query(`UPDATE employee_Role SET title = ? WHERE first_name = ?`, {
+                title: answers.newRole,
+                first_name: answers.roleUpdate
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('Updated Employee Role')
+                console.table(answers)
+                employeeUpdate()
+            })
+    })
+
+}
+
+employeeUpdate()
