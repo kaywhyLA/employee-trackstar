@@ -137,3 +137,22 @@ const addEmployee = () => {
             })
     })
 };
+
+// add new department
+const addDepartment = () => {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What department would you like to add?',
+        name: 'newDept'
+    }]).then((answers) => {
+        connection.query(`INSERT INTO employee_Dept SET?`, {
+                dept_name: answers.newDept
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('Added new department')
+                console.table(answers)
+                employeeUpdate()
+            })
+    })
+};
