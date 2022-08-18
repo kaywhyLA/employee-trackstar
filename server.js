@@ -77,3 +77,14 @@ const viewAllEmployees = () => {
         employeeUpdate()
     })
 };
+
+// view all departments
+const viewDepartments = () => {
+    const query = `SELECT dept_name FROM employee_Dept`
+    connection.query(query, (err, res) => {
+        if (err) throw err
+        console.log('Viewing Departments')
+        console.table(res)
+        employeeUpdate()
+    })
+};
