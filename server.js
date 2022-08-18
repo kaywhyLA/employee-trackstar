@@ -104,3 +104,36 @@ const viewRoles = () => {
         })
     })
 };
+
+// add new employee
+const addEmployee = () => {
+    inquirer.prompt([{
+            type: 'input',
+            message: 'What is the employees first name?',
+            name: 'firstName'
+        },
+        {
+            type: 'input',
+            message: 'What is the employees last name?',
+            name: 'lastName'
+        },
+        {
+            type: 'input',
+            message: 'What is the employees manager id?',
+            name: 'managersId'
+        }
+    ]).then((answers) => {
+        connection.query(`INSERT INTO employees SET ?`, {
+                first_name: answers.firstName,
+                last_name: answers.lastName,
+                role_id: answers.roleId,
+                manager_id: answers.managersId
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('Added employee')
+                console.log(answers)
+                employeeUpdate()
+            })
+    })
+};
