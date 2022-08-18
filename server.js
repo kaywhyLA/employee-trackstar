@@ -88,3 +88,19 @@ const viewDepartments = () => {
         employeeUpdate()
     })
 };
+
+// view all roles
+const viewRoles = () => {
+    rolesArray = []
+    const query = `SELECT title FROM employee_Role`
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        res.forEach(({ title }) => {
+            rolesArray.push(title);
+            console.log('Viewing Roles')
+            console.log(res)
+            console.log(rolesArray)
+            employeeUpdate()
+        })
+    })
+};
